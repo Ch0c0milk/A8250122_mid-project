@@ -23,7 +23,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Framer.h">
+    <ClInclude Include="Farmer.h">
       <Filter>標頭檔</Filter>
     </ClInclude>
   </ItemGroup>

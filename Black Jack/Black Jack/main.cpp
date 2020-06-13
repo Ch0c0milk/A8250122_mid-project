@@ -1,13 +1,39 @@
-#include"Framer.h"
+#include"Farmer.h"
 #include<iostream>
 #include<string>
+#include<ctime>
+#include<cstdlib>
 using namespace std;
 int main() {
+	srand(time(0));
+	
+	char choose;
+	int i = 0;		//計數器，計算玩家拿了幾次牌
+	Farmer farmer1;
 
-	string Poker[54] = { " ",
-	"黑桃A","黑桃2","黑桃3","黑桃4","黑桃5","黑桃6","黑桃7","黑桃8","黑桃9","黑桃10","黑桃J","黑桃Q","黑桃K",
-	"紅心A","紅心2","紅心3","紅心4","紅心5","紅心6","紅心7","紅心8","紅心9","紅心10","紅心J","紅心Q","紅心K",
-	"方塊A","方塊2","方塊3","方塊4","方塊5","方塊6","方塊7","方塊8","方塊9","方塊10","方塊J","方塊Q","方塊K",
-	"梅花A","梅花2","梅花3","梅花4","梅花5","梅花6","梅花7","梅花8","梅花9","梅花10","梅花J","梅花Q","梅花K"};
+	for (int j = 0; j < 2; j++) {		//遊戲開始，先發給玩家兩張牌
+		int randomCard = rand() % 52 + 1;
+		farmer1.setPokerF(i, randomCard);
+		i++;
+	}
 
+	farmer1.calculateTotalPoint();
+	if (farmer1.getTotalPonit() == 21)		//如果2張手牌和=21，直接贏得比賽
+		cout << "BlackJack!!!!你贏了!!!!!" << endl;
+	else {
+		cout << "還要再補牌嗎? 要>>>輸入y;不要>>>輸入n" << endl;
+		cin >> choose;
+
+		while (choose == 121 && i < 5 && farmer1.getTotalPonit() <= 21) {		//y的ASCII碼為121
+
+			int randomCard = rand() % 52 + 1;		//抽一張牌
+			farmer1.setPokerF(i, randomCard);		//抽到的牌給玩家
+			farmer1.calculateTotalPoint();		//計算總點數
+			i++;		//計數器加一
+			cin >> choose;		//再次輸入決定
+
+		}
+	}
+
+	
 }

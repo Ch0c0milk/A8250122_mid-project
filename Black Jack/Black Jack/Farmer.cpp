@@ -1,6 +1,11 @@
-#include"Framer.h"
+#include"Farmer.h"
 
-Farmer::Farmer() {}
+Farmer::Farmer() {
+	pokerF[5] = {};
+	poker[5] = {};
+	total = 0;
+	totalPoint = 0;
+}
 
 void Farmer::calculateTotalPoint() {
 
