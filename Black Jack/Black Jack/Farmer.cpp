@@ -1,15 +1,28 @@
 #include"Farmer.h"
 
 Farmer::Farmer() {
+	srand(time(0));
 	pokerF[5] = {};
 	poker[5] = {};
 	total = 0;
 	totalPoint = 0;
+	page = 0;
+
+
+	for (int j = 0; j < 2; j++) {		//遊戲開始，先發給玩家兩張牌
+		int randomCard = rand() % 52 + 1;
+		setPokerF(page, randomCard);
+		page++;
+	}
+	calculateTotalPoint();
+	
+
+
 }
 
 void Farmer::calculateTotalPoint() {
 
-	int point;
+	int point=0;
 
 	for (int const &item : pokerF ) {
 
@@ -41,3 +54,28 @@ int Farmer::getTotalPonit() {
 void Farmer::setPokerF(int pokerFIndex, int pokerIndex) {
 	pokerF[pokerFIndex] = pokerIndex;
 }
+
+void Farmer::PokerA()
+{
+	char choose;
+	if (getTotalPonit() == 21)		//如果2張手牌和=21，直接贏得比賽
+		cout << "BlackJack!!!!你贏了!!!!!" << endl;
+	else {
+		cout << "還要再補牌嗎? 要>>>輸入y;不要>>>輸入n" << endl;
+		cin >> choose;
+
+		while (choose == 121 && page < 5 && getTotalPonit() <= 21) {		//y的ASCII碼為121
+
+			int randomCard = rand() % 52 + 1;		//抽一張牌
+			setPokerF(page, randomCard);		//抽到的牌給玩家
+			calculateTotalPoint();		//計算總點數
+			page++;	//計數器加一
+			cin >> choose;		//再次輸入決定
+
+		}
+	
+}
+
+
+
+
