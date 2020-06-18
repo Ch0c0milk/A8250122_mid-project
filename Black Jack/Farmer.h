@@ -6,13 +6,15 @@
 #include<ctime>
 #include<cstdlib>
 using namespace std;
+
 class Farmer {
 public:
 	Farmer();
 	void calculateTotalPoint();		//計算玩家手上的點數
 	int getTotalPonit();
 	void setPokerF(int pokerFIndex,int pokerIndex);
-	void PokerA();//判定勝負
+	void PokerA();//補牌與判定勝負
+	int getPokerF(int index);
 private:
 	int pokerF[5];		//玩家手上的牌
 	int poker[5];		//莊家手牌

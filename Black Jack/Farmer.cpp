@@ -1,23 +1,21 @@
 #include"Farmer.h"
 
+srand(time(0));
+
 Farmer::Farmer() {
-	srand(time(0));
+
 	pokerF[5] = {};
 	poker[5] = {};
 	total = 0;
 	totalPoint = 0;
-	page = 0;
+	page = 0;//計數
 
-
-	for (int j = 0; j < 2; j++) {		//遊戲開始，先發給玩家兩張牌
+	//for (int j = 0; j < 2; j++) {		//遊戲開始，先發給玩家兩張牌
 		int randomCard = rand() % 52 + 1;
 		setPokerF(page, randomCard);
 		page++;
-	}
+	//}********因為有bug所以初始化發一次就好********
 	calculateTotalPoint();
-	
-
-
 }
 
 void Farmer::calculateTotalPoint() {
@@ -57,25 +55,24 @@ void Farmer::setPokerF(int pokerFIndex, int pokerIndex) {
 
 void Farmer::PokerA()
 {
-	char choose;
 	if (getTotalPonit() == 21)		//如果2張手牌和=21，直接贏得比賽
 		cout << "BlackJack!!!!你贏了!!!!!" << endl;
+	else if (getTotalPonit() < 21) {
+		int randomCard = rand() % 52 + 1;		//抽一張牌
+		setPokerF(page, randomCard);		//抽到的牌給玩家
+		calculateTotalPoint();		//計算總點數
+		page++;	//計數器加一
+	}
 	else {
-		cout << "還要再補牌嗎? 要>>>輸入y;不要>>>輸入n" << endl;
-		cin >> choose;
+		cout << "你爆了，哈哈" << endl;
+		cout << endl;
 
-		while (choose == 121 && page < 5 && getTotalPonit() <= 21) {		//y的ASCII碼為121
-
-			int randomCard = rand() % 52 + 1;		//抽一張牌
-			setPokerF(page, randomCard);		//抽到的牌給玩家
-			calculateTotalPoint();		//計算總點數
-			page++;	//計數器加一
-			cin >> choose;		//再次輸入決定
-
+		for (int i = 0, i < 5; i++) {//清空玩家手上的牌
+			setPokerF(i, 0);
 		}
+
+	}
 	
-}
-
-
-
-
+	int getPokerF(index) {
+		return getPokerF(index);
+	}
